@@ -21,13 +21,15 @@ class Crawler:
         """Load a page"""
         self.driver.get(url)
 
-    def get_element_by_query(self, query):
+    def get_element_by_query(self, query, root=None):
         """Find an element by css-query"""
-        return self.driver.find_element(By.CSS_SELECTOR, query)
+        root = self.driver if not root else root
+        return root.find_element(By.CSS_SELECTOR, query)
 
-    def get_elements_by_query(self, query):
+    def get_elements_by_query(self, query, root=None):
         """Find elements by css-query"""
-        return self.driver.find_elements(By.CSS_SELECTOR, query)
+        root = self.driver if not root else root
+        return root.find_elements(By.CSS_SELECTOR, query)
 
     def wait_for_element_condition_by_query(self, query, condition, timeout=TIMEOUT):
         """Wait for element to meet a condition by query"""
